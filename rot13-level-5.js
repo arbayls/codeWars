@@ -16,10 +16,8 @@ function rot13(str) {
     return char;
   }).join('');
 }
-
+//Find the equivalent letter in the alphabet.
 function rotator(alphabetArr, char) {
   var idx = alphabetArr.indexOf(char);
   return (alphabetArr[(idx + 13) % alphabetArr.length]);
 }
-
-console.log(rot13("@[`{"));
