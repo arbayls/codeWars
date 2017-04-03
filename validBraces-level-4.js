@@ -4,10 +4,28 @@
 // validBraces( "(}" ) => returns false
 // validBraces( "[(])" ) => returns false
 // validBraces( "([{}])" ) => returns true
+// validBraces( "([)]" ) => returns false
 
-function validBraces(braces) {
-  if (braces.indexOf("(" > 0 && braces.indexOf(")" > 0))) {
-    return true;
+function validBraces (braces) {
+  var validBracesObj = {
+    "{": "}",
+    "[": "]",
+    "(": ")"
+  };
+  var leftBraces = [];
+  var bracesArr = braces.split('');
+  for (var i = 0; i < bracesArr.length; i++) {
+    var brace = bracesArr[i];
+    if (validBracesObj[brace]) {
+      leftBraces.push(brace);
+    } else if (brace === validBracesObj[leftBraces[leftBraces.length - 1]]) {
+      leftBraces.pop();
+    } else if (!validBracesObj[brace] && leftBraces.length === 0) {
+      return false;
+    } else if (brace !== validBracesObj[leftBraces[leftBraces.length - 1]]) {
+      return false;
+    }
+  }
+  return (leftBraces.length === 0);
 }
-
-validBraces('(){}[]');
+console.log(validBraces('({}[])'));
