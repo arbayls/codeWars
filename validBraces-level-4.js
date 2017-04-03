@@ -6,6 +6,7 @@
 // validBraces( "([{}])" ) => returns true
 // validBraces( "([)]" ) => returns false
 
+//validBraces adds each left brace to a stack and pops one off if there is a corresponding bracket. At the end, the stack should be empty if all pairs of braces are valid.
 function validBraces (braces) {
   var validBracesObj = {
     "{": "}",
